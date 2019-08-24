@@ -14,7 +14,7 @@ To get started turn the vehicle ON [press V]. This enables the control of the pa
 
 To release the parking break multiple options are available: eigther press the release parking break button at cabine 1 [press 1] or cabine 2 [press 2] (if this cabine is available). Alternatively, remotely connect to the train through Line #11 and release the parking breaks. One other way to do it is to enable the WTB UIC communication protocol between cars and then increase the parking break pipe pressure.
 
-After 
+After the parking breaks are released the train can be accelerated [press the UP arrow] or decelerated [press the DOWN arrow]. While moving the emergency breaks can also be activated [press the SPACE BAR].
 
 ## Simulator controls:
 
