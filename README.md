@@ -16,6 +16,9 @@ To release the parking break multiple options are available: eigther press the r
 
 After the parking breaks are released the train can be accelerated [press the UP arrow] or decelerated [press the DOWN arrow]. While moving the emergency breaks can also be activated [press the SPACE BAR].
 
+There is a certain probability that the parking break gets stuck (eighter ON or OFF) due to harware failure. This is simulated with the variables *stuckOnProb* and *stuckOffProb* in the **parkingBreakControl** class.
+
+
 ## Simulator controls:
 
 ### GRAPHIC CONTROLS:
