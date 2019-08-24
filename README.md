@@ -16,28 +16,28 @@ To release the parking break multiple options are available: eigther press the r
 
 After 
 
-# Simulator controls:
+## Simulator controls:
 
-## GRAPHIC CONTROLS:
-*[F1] Show/Hide the Console
-*[F2] Show/Hide the Parking Break schematic
-*[F3] Show/Hide the Parking Break variables' state
-*[F4] Show/Hide the background image' state
-*[F5] Show/Hide the train
-*[+]  Increase train size
-*[-]  Decrease train size
+### GRAPHIC CONTROLS:
+* [F1] Show/Hide the Console
+* [F2] Show/Hide the Parking Break schematic
+* [F3] Show/Hide the Parking Break variables' state
+* [F4] Show/Hide the background image' state
+* [F5] Show/Hide the train
+* [+]  Increase train size
+* [-]  Decrease train size
 
-## PARKING BREAK CONTROLS:
-*[1] Press cabine 1 parking break release button
-*[2] Press cabine 2 parking break release button
-*[A] Activate line #11 (remote)
-*[R] Resets the breaks' hardware in case it stucks
-*[Q] Increases pressure on breaking pipe
-*[W] Decreases pressure on breaking pipe
+### PARKING BREAK CONTROLS:
+* [1] Press cabine 1 parking break release button
+* [2] Press cabine 2 parking break release button
+* [A] Activate line #11 (remote)
+* [R] Resets the breaks' hardware in case it stucks
+* [Q] Increases pressure on breaking pipe
+* [W] Decreases pressure on breaking pipe
  
- ## TRAIN CONTROLS:
-*[V] Turn the vehicle ON/OFF
-*[O] Turn operation mode WTB UIC ON/OFF
-*[UP arrow] Increase speed gear
-*[DOWN arrow] Decrease speed gear
-*[SPACE BAR] Activate the emergency breaks
+ ### TRAIN CONTROLS:
+* [V] Turn the vehicle ON/OFF
+* [O] Turn operation mode WTB UIC ON/OFF
+* [UP arrow] Increase speed gear
+* [DOWN arrow] Decrease speed gear
+* [SPACE BAR] Activate the emergency breaks
