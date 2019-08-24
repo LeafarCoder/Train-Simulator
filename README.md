@@ -22,7 +22,7 @@ After
 * [F1] Show/Hide the Console
 * [F2] Show/Hide the Parking Break schematic
 * [F3] Show/Hide the Parking Break variables' state
-* [F4] Show/Hide the background image' state
+* [F4] Show/Hide the background image
 * [F5] Show/Hide the train
 * [+]  Increase train size
 * [-]  Decrease train size
