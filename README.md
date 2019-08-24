@@ -41,3 +41,6 @@ After
 * [UP arrow] Increase speed gear
 * [DOWN arrow] Decrease speed gear
 * [SPACE BAR] Activate the emergency breaks
+
+### HELP
+* [H] Shows/Hides help menu
