@@ -1,9 +1,22 @@
+/*
+This project simulates the parking break system of a train.
+It was developed during my summer internship at Critical Software during the week at the HIS department (High Integrity Systems).
+Last update: 24/08/2019
+
+Author: Rafael Correia
+LinkedIn: https://www.linkedin.com/in/joserafaelcorreia/
+*/
+
+
+
+
 import static java.awt.event.KeyEvent.*;
 
 // ######################################################################
 // ######################### Global variables ###########################
 // ######################################################################
 
+boolean fullScreen = false;
 char lastKeyPressed;
 
 Menu menu;
@@ -20,14 +33,15 @@ GraphicsControl graphicsControl;
 // ######################################################################
 
 void setup(){
+  // by default set to fullscreen. If fullScreen variable is False then the graphicsControl object will resize the sketch
+  fullScreen();
   surface.setVisible(false);
-  size(100,100);
   
   // Declare objects
   console = new Console();
   parkingBreakControl = new ParkingBreakControl();
   train = new Train();
-  graphicsControl = new GraphicsControl(1200, 800);
+  graphicsControl = new GraphicsControl(1200, 600, fullScreen);
   
   // Tie console for all controlers
   train.setConsole(console);
@@ -50,7 +64,9 @@ void setup(){
 void draw(){
 
   // CONTROL SIMULATION
-  controlSimulationFlow();
+  if(!graphicsControl.showHelp){
+    controlSimulationFlow();
+  }
   
   // DISPLAY GRAPHICS
   graphicsControl.displayGraphics();
@@ -204,11 +220,6 @@ void keyPressed() {
     if(key == 'H' || key == 'h'){
       graphicsControl.showHelp = !graphicsControl.showHelp;
       graphicsControl.displayGraphics();
-      if(graphicsControl.showHelp){
-        noLoop();
-      }else{
-        loop();
-      }
     }
     
     if(key == ' '){

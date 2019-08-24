@@ -47,6 +47,7 @@ class Item{
     // name
     fill(0);
     textSize(15);
+    textAlign(BASELINE);
     text(name, x + text_offset, y);
   }
 }

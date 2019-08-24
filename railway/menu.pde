@@ -23,7 +23,7 @@ class Menu{
   
   void display(){
     stroke(0);
-    fill(255);
+    fill(255, 220);
     int x = width - menu_width;
     rect(x, 0, menu_width, menu_height);
     

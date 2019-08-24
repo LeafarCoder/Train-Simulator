@@ -29,7 +29,7 @@ class GraphicsControl{
   // ######################################################################
   // ########################### Constructor ##############################
   // ######################################################################
-  GraphicsControl(int sizeX, int sizeY){
+  GraphicsControl(int sizeX, int sizeY, boolean fullScreen){
     
     showConsole = true;
     showSchematics = true;
@@ -46,7 +46,11 @@ class GraphicsControl{
     background = resizeImage(background, background_rs[background_idx]);
     
     // Define window size
-    windowSize = new PVector(sizeX, sizeY);
+    if(fullScreen){
+      windowSize = new PVector(displayWidth, displayHeight*0.9);
+    }else{
+      windowSize = new PVector(sizeX, sizeY);
+    }
     
     // Control window size
     surface.setResizable(true);
@@ -63,7 +67,7 @@ class GraphicsControl{
     background(200);
   
   if(showBackground){
-    image(background, 0, 0);
+    image(background, 0, height - background.height);
   }
     
   // draw Menu
@@ -82,7 +86,11 @@ class GraphicsControl{
   
   // draw console
   if(showConsole){
-    console.display(width - rightPanel_width, parkingBreakVariablesMenu_height, rightPanel_width, height/4);
+    if(showParkingBreakVariables){
+      console.display(width - rightPanel_width, parkingBreakVariablesMenu_height, rightPanel_width, height/4);
+    }else{
+      console.display(width - rightPanel_width, 0, rightPanel_width, height/4);
+    }
   }
   
   // draw trains
@@ -114,72 +122,83 @@ class GraphicsControl{
   }
   
   private void displayHelp(){
-    int x_offset = 100;
-    int y_offset = 100;
+    int x_offset = int(width*0.05);
+    int y_offset = int(height*0.02);
+    int txt_x_offset = 50;
+    int txt_y_offset = 20;
+    int txt_y_inter_paragraphs = 15;
+    float x_width_block;
     int y_accum = y_offset;
     String txt;
+    int txtLeading = 20;
     textLeading(10);
-    
+
     // box
-    fill(0, 220);
+    fill(0, 240);
     strokeWeight(3);
     stroke(255);
     rect(x_offset, y_offset, width - 2*x_offset, height - 2*y_offset);
     strokeWeight(1);
     
+    fill(255);
     
     // title
-    y_accum += 50;
-    fill(255);
-    textAlign(CENTER);
+    y_accum += txt_y_offset;
+    textAlign(CENTER, TOP);
     textSize(30);
     text("HELP", width/2, y_accum);
     
     // introduction
-    y_accum += 50;
-    textAlign(BASELINE);
+    y_accum += 3*txtLeading;
+    textAlign(LEFT, TOP);
     textSize(16);
-    textLeading(20);
-    txt = "This is a simulator for testing the Parking Break system of a train!";
-    text(txt, x_offset + 20, y_accum);
-    
-    // Graphics help
-    y_accum += 50;
-    textAlign(BASELINE);
-    textSize(16);
-    textLeading(20);
-    txt = "GRAPHIC CONTROLS:\n";
-    txt += "[F1] Show/Hide the Console\n";
-    txt += "[F2] Show/Hide the Parking Break schematic\n";
-    txt += "[F3] Show/Hide the Parking Break variables' state\n";
-    txt += "[F4] Show/Hide the background image' state\n";
-    txt += "[F5] Show/Hide the train\n";
-    txt += "[+]  Increase train size\n";
-    txt += "[-]  Decrease train size\n";
-    text(txt, x_offset + 20, y_accum);
+    textLeading(txtLeading);
+    txt = "This is a simulator for testing the Parking Break system of a train!\n";
+    txt += "To get started turn the vehicle ON [press V]. This enables the control of the parking break system. ";
+    txt += "To release the parking break multiple options are available: eigther press the release parking break button at cabine 1 [press 1] or cabine 2 [press 2] (if this cabine is available). ";
+    txt += "Alternatively, remotely connect to the train through Line #11 and release the parking breaks. One other way to do it is to enable the WTB UIC communication protocol between cars and then increase the parking break pipe pressure.\n";
+    x_width_block = width - 2*x_offset - 2*txt_x_offset;
+    text(txt, x_offset + txt_x_offset, y_accum, x_width_block, 500);
     
     // Parking break controls
-    y_accum += 190;
-    textAlign(BASELINE);
-    textSize(16);
-    textLeading(20);
+    y_accum += txt_y_inter_paragraphs + getParagraphHeight(txt, x_width_block, txtLeading);
     txt = "PARKING BREAK CONTROLS:\n";
     txt += "[1] Press cabine 1 parking break release button\n";
     txt += "[2] Press cabine 2 parking break release button\n";
     txt += "[A] Activate line #11 (remote)\n";
+    txt += "[R] Resets the breaks' hardware in case it stucks\n";
+    txt += "[Q] Increases pressure on breaking pipe\n";
+    txt += "[W] Decreases pressure on breaking pipe\n";
+    x_width_block = width/2 - x_offset - txt_x_offset;
+    text(txt, width/2 + txt_x_offset, y_accum, x_width_block, 500);
+
+    // Graphics help
+    txt = "GRAPHIC CONTROLS:\n";
+    txt += "[F1] Show/Hide the Console\n";
+    txt += "[F2] Show/Hide the Parking Break schematic\n";
+    txt += "[F3] Show/Hide the Parking Break variables' state\n";
+    txt += "[F4] Show/Hide the background image\n";
+    txt += "[F5] Show/Hide the train\n";
+    txt += "[+]  Increase train size\n";
+    txt += "[-]  Decrease train size\n";
+    text(txt, x_offset + txt_x_offset, y_accum, x_width_block, 500);
+    
+    // Train controls
+    y_accum += txt_y_inter_paragraphs + getParagraphHeight(txt, x_width_block, txtLeading);
+    txt = "TRAIN CONTROLS:\n";
     txt += "[V] Turn the vehicle ON/OFF\n";
     txt += "[O] Turn operation mode WTB UIC ON/OFF\n";
-    txt += "[R] Resets the breaks' hardware in case it stucks\n";
-    text(txt, x_offset + 20, y_accum);
+    txt += "[UP arrow] Increase speed gear\n";
+    txt += "[DOWN arrow] Decrease speed gear\n";
+    txt += "[SPACE BAR] Activate the emergency breaks\n";
+    text(txt, x_offset + txt_x_offset, y_accum, x_width_block, 500);
     
     // Developer
-    y_accum += 170;
-    textAlign(BASELINE);
-    textSize(16);
-    textLeading(20);
+    // y_accum += txt_y_inter_paragraphs + getParagraphHeight(txt, x_width_block, txtLeading);
     txt = "DEVELOPER:\n";
     txt += "Rafael Correia @ Crtical Software (Summer internship)\n";
-    text(txt, x_offset + 20, y_accum);
+    txt += "Last update: 24/08/2019";
+    text(txt, width/2 + txt_x_offset, y_accum, x_width_block, 500);
   }
   
   void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
@@ -231,10 +250,11 @@ class GraphicsControl{
     
     
     stroke(0);
-    fill(255);
+    noFill();
     rect(pressure_x - pressure_w/2, pressure_y, pressure_w * 2, pressure_h + 60);
     
     fill(0);
+    textAlign(BASELINE);
     text("Pressure", pressure_x - 10, pressure_y + 20);
     text(nf(train.getBreakPipePressure(),0,3) + " [bars]", pressure_x - 20, pressure_y + 35);
     fill(255);
@@ -266,6 +286,10 @@ class GraphicsControl{
     int r = 10;
     int g = 50;
     
+    fill(255,150);
+    rect(x - 50, y - 30, w + 250, h + 100);
+    
+    fill(0);
     stroke(0);
     strokeWeight(2);
     
@@ -388,5 +412,15 @@ class GraphicsControl{
     
     strokeWeight(1);
     textLeading(48);
+  }
+  
+  private int getParagraphHeight(String txt, float x_width_block, int txtLeading){
+    String[] list = split(txt, '\n');
+    int h = 0;
+    
+    for(int i = 0; i < list.length - 1; i++){
+      h += ceil(textWidth(list[i]) / x_width_block) * txtLeading;
+    }
+    return h;
   }
 }

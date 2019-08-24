@@ -10,17 +10,16 @@ class Console{
   
   public void addEntry(String str){
     String sec = "";
-    if(second() < 10){
-      sec = "0" + str(second());
-    }else{
-      sec = str(second());
-    }
-    
-    log.append("["+hour()+":"+minute()+":"+sec+"]  " + str);
+    String min = "";
+    String hr = "";
+    if(second() < 10){sec = "0" + str(second());}else{sec = str(second());}
+    if(minute() < 10){min = "0" + str(minute());}else{min = str(minute());}
+    if(hour() < 10){hr = "0" + str(hour());}else{hr = str(hour());}
+    log.append("["+hr+":"+min+":"+sec+"]  " + str);
   }
   
   public void display(int x, int y, int w, int h){
-    fill(255);
+    fill(255, 220);
     stroke(0);
     
     // background
