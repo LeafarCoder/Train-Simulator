@@ -6,3 +6,14 @@ It was developed during my summer internship at Critical Software during the wee
 
 
 Last update: 23/08/2019
+
+Quick walkthrough (also explained in the Help menu [press H]):
+
+This is a simulator for testing the Parking Break system of a train!
+To get started turn the vehicle ON [press V]. This enables the control of the parking break system.
+To release the parking break multiple options are available: eigther press the release parking break button at cabine 1 [press 1] or cabine 2 [press 2] (if this cabine is available).
+Alternatively, remotely connect to the train through Line #11 and release the parking breaks. One other way to do it is to enable the WTB UIC communication protocol between cars and then increase the parking break pipe pressure.
+
+
+
+   
